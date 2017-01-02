@@ -1,0 +1,14 @@
+DEFAULT local
+UI syslinux-3.86/com32/menu/menu.c32
+TIMEOUT 100
+MENU INCLUDE pxelinux.cfg/pxe.conf
+
+LABEL local
+MENU LABEL 1. Local
+	localboot 0
+
+LABEL Install XenServer 7
+MENU LABEL 2. Install XenServer 7
+kernel xenserver/7.0.0/mboot.c32
+append xenserver/7.0.0/xen.gz dom0_max_vcpus=2 dom0_mem=1024M,max:1024M com1=115200,8n1 console=com1,vga --- xenserver/7.0.0/vmlinuz xencons=hvc console=tty0 console=hvc0 use_ibft --- xenserver/7.0.0/install.img
+ENDTEXT
